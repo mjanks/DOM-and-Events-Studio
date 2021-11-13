@@ -3,7 +3,7 @@
 window.addEventListener('load', () => {
   let inFlight = false;
   const takeOffButton = document.getElementById('takeoff');
-  const landButton = document.getElementById('takeoff');
+  const landButton = document.getElementById('landing');
   const abortMissionButton = document.getElementById('missionAbort');
   const upButton = document.getElementById('up');
   const downButton = document.getElementById('down');
@@ -27,6 +27,18 @@ window.addEventListener('load', () => {
         spaceShuttleHeight.innerHTML = 10000;
         inFlight = true;
       }
+    }
+  });
+
+  landButton.addEventListener('click', () => {
+    if (!inFlight) {
+      window.alert('Shuttle is still on the ground!');
+    } else {
+      window.alert('The shuttle is landing. Landing gear engaged.');
+      flightStatus.innerHTML = 'The shuttle has landed.';
+      shuttleBackground.style.backgroundColor = 'Green';
+      spaceShuttleHeight.innerHTML = 0;
+      inFlight = false;
     }
   });
 });
