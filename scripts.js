@@ -25,6 +25,7 @@ window.addEventListener('load', () => {
         flightStatus.innerHTML = 'Shuttle in flight.';
         shuttleBackground.style.backgroundColor = 'Blue';
         spaceShuttleHeight.innerHTML = 10000;
+        rocketImage.style.marginTop = '240px';
         inFlight = true;
       }
     }
@@ -38,6 +39,7 @@ window.addEventListener('load', () => {
       flightStatus.innerHTML = 'The shuttle has landed.';
       shuttleBackground.style.backgroundColor = 'Green';
       spaceShuttleHeight.innerHTML = 0;
+      rocketImage.style.marginTop = '250px';
       inFlight = false;
     }
   });
@@ -55,15 +57,27 @@ window.addEventListener('load', () => {
   });
 
   upButton.addEventListener('click', () => {
-    // move rocketImage
-    let height = Number(spaceShuttleHeight.innerHTML) + 10000;
-    spaceShuttleHeight.innerHTML = height;
+    let location = rocketImage.offsetTop;
+    if (location !== 0 && inFlight) {
+      location -= 10;
+      rocketImage.style.marginTop = location + 'px';
+      let height = Number(spaceShuttleHeight.innerHTML) + 10000;
+      spaceShuttleHeight.innerHTML = height;
+    } else {
+      window.alert('Shuttle is at max height!');
+    }
   });
 
   downButton.addEventListener('click', () => {
-    // move rocketImage
-    let height = Number(spaceShuttleHeight.innerHTML) - 10000;
-    spaceShuttleHeight.innerHTML = height;
+    let location = rocketImage.offsetTop;
+    if (location !== 240 && inFlight) {
+      location += 10;
+      rocketImage.style.marginTop = location + 'px';
+      let height = Number(spaceShuttleHeight.innerHTML) - 10000;
+      spaceShuttleHeight.innerHTML = height;
+    } else {
+      window.alert('Shuttle is at minimum height! Click Land to touch down.');
+    }
   });
 
   leftButton.addEventListener('click', () => {
