@@ -2,6 +2,7 @@
 // Remember to pay attention to page loading!
 window.addEventListener('load', () => {
   let inFlight = false;
+  let leftRightPositon = 0;
   const takeOffButton = document.getElementById('takeoff');
   const landButton = document.getElementById('landing');
   const abortMissionButton = document.getElementById('missionAbort');
@@ -52,6 +53,7 @@ window.addEventListener('load', () => {
       flightStatus.innerHTML = 'Mission aborted.';
       shuttleBackground.style.backgroundColor = 'Green';
       spaceShuttleHeight.innerHTML = 0;
+      rocketImage.style.marginTop = '250px';
       inFlight = false;
     }
   });
@@ -63,6 +65,8 @@ window.addEventListener('load', () => {
       rocketImage.style.marginTop = location + 'px';
       let height = Number(spaceShuttleHeight.innerHTML) + 10000;
       spaceShuttleHeight.innerHTML = height;
+    } else if (!inFlight) {
+      window.alert('Shuttle has not launched!');
     } else {
       window.alert('Shuttle is at max height!');
     }
@@ -75,16 +79,33 @@ window.addEventListener('load', () => {
       rocketImage.style.marginTop = location + 'px';
       let height = Number(spaceShuttleHeight.innerHTML) - 10000;
       spaceShuttleHeight.innerHTML = height;
+    } else if (!inFlight) {
+      window.alert('Shuttle has not launched!');
     } else {
       window.alert('Shuttle is at minimum height! Click Land to touch down.');
     }
   });
 
+  // -370px to 350px
   leftButton.addEventListener('click', () => {
-    // move rocketImage
+    if (leftRightPositon !== -370 && inFlight) {
+      leftRightPositon -= 10;
+      rocketImage.style.marginLeft = leftRightPositon + 'px';
+    } else if (!inFlight) {
+      window.alert('Shuttle has not launched!');
+    } else {
+      window.alert('Shuttle is at leftmost position!');
+    }
   });
 
   rightButton.addEventListener('click', () => {
-    // move rocketImage
+    if (leftRightPositon !== 350 && inFlight) {
+      leftRightPositon += 10;
+      rocketImage.style.marginLeft = leftRightPositon + 'px';
+    } else if (!inFlight) {
+      window.alert('Shuttle has not launched!');
+    } else {
+      window.alert('Shuttle is at rightmost position!');
+    }
   });
 });
