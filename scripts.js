@@ -12,6 +12,7 @@ window.addEventListener('load', () => {
   const flightStatus = document.getElementById('flightStatus');
   const shuttleBackground = document.getElementById('shuttleBackground');
   const spaceShuttleHeight = document.getElementById('spaceShuttleHeight');
+  const rocketImage = document.getElementById('rocket');
 
   takeOffButton.addEventListener('click', () => {
     if (inFlight) {
@@ -20,7 +21,6 @@ window.addEventListener('load', () => {
       let confirmTakeoffResponse = window.confirm(
         'Confirm that the shuttle is ready for takeoff.'
       );
-
       if (confirmTakeoffResponse && !inFlight) {
         flightStatus.innerHTML = 'Shuttle in flight.';
         shuttleBackground.style.backgroundColor = 'Blue';
@@ -46,12 +46,31 @@ window.addEventListener('load', () => {
     let confirmAbortMission = window.confirm(
       'Confirm that you want to abort the mission.'
     );
-
     if (confirmAbortMission) {
       flightStatus.innerHTML = 'Mission aborted.';
       shuttleBackground.style.backgroundColor = 'Green';
       spaceShuttleHeight.innerHTML = 0;
       inFlight = false;
     }
+  });
+
+  upButton.addEventListener('click', () => {
+    // move rocketImage
+    let height = Number(spaceShuttleHeight.innerHTML) + 10000;
+    spaceShuttleHeight.innerHTML = height;
+  });
+
+  downButton.addEventListener('click', () => {
+    // move rocketImage
+    let height = Number(spaceShuttleHeight.innerHTML) - 10000;
+    spaceShuttleHeight.innerHTML = height;
+  });
+
+  leftButton.addEventListener('click', () => {
+    // move rocketImage
+  });
+
+  rightButton.addEventListener('click', () => {
+    // move rocketImage
   });
 });
